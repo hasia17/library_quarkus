@@ -32,3 +32,4 @@ tkit-quarkus-example-jpa:
     - "test.env.QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://tkit-quarkus-example-jpa-db:5432/db?sslmode=disable"
   networks:
     - test
+

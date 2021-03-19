@@ -4,8 +4,11 @@ import domain.DAOs.AuthorDAO;
 
 import domain.models.Author;
 
+import domain.models.AuthorSearchCriteria;
+import org.tkit.quarkus.jpa.daos.PageResult;
 import rs.internal.DTOs.AuthorCreateUpdateDTO;
 
+import rs.internal.DTOs.AuthorSearchCriteriaDTO;
 import rs.internal.mappers.AuthorMapper;
 
 
@@ -63,6 +66,13 @@ public class AuthorRestController {
         Author author = authorDAO.findById(id);
         authorDAO.delete(author);
         return Response.ok(mapper.map(author)).build();
+    }
+
+    @GET
+    public Response getAuthors(@BeanParam AuthorSearchCriteriaDTO dto) {
+        AuthorSearchCriteria criteria = mapper.map(dto);
+        PageResult<Author> authors = authorDAO.searchByCriteria(criteria);
+        return Response.ok(mapper.map(authors)).build();
     }
 
 
