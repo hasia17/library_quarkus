@@ -1,5 +1,7 @@
 version: "2.4"
+
 services:
+
   demo-db:
     container_name: demo-db
     image: bitnami/postgresql:12
@@ -12,18 +14,19 @@ services:
       - "test.Wait.forLogMessage.regex=.*database system is ready to accept connections.*\\s"
       - "test.Wait.forLogMessage.times=1"
       - "test.log=true"
-      - "test.property.quarkus.datasource.jdbc.url=jdbc:postgresql://$${host:demo-db}:$${port:demo-db:5433}/demo?sslmode=disable"
+      - "test.property.quarkus.datasource.jdbc.url=jdbc:postgresql://$${host:demo-db}:$${port:demo-db:5432}/demo?sslmode=disable"
     ports:
       - "5432:5432"
     networks:
       - test
+
   demo-db-import:
     container_name: demo-db-import
     image: 1000kit/dbimport:0.2.0
     environment:
       DB_URL: "jdbc:postgresql://demo-db:5432/demo?sslmode=disable"
       DB_USERNAME: "demo"
-      DB_PASSWORD: "demot"
+      DB_PASSWORD: "demo"
     ports:
       - "8811:8080"
     labels:
@@ -33,6 +36,7 @@ services:
       - "test.property.tkit.test.dbimport.url=$${url:demo-db-import:8080}"
     networks:
       - test
+
   demo:
     image: demo:latest
     ports:
@@ -48,7 +52,7 @@ services:
       - "test.log=true"
     networks:
       - test
+
 networks:
   test:
-
 # END

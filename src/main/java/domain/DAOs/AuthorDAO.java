@@ -28,16 +28,16 @@ public class AuthorDAO extends AbstractDAO<Author> {
         List<Predicate> predicates = new ArrayList<>();
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
 
-        if(criteria.getName() != null && !criteria.getName().isEmpty()) {
+        if (criteria.getName() != null && !criteria.getName().isEmpty()) {
             predicates.add(builder.like(root.get("name"), criteria.getName().toLowerCase() + "%"));
         }
 
-        if(criteria.getLastName() != null && !criteria.getLastName().isEmpty()) {
+        if (criteria.getLastName() != null && !criteria.getLastName().isEmpty()) {
             predicates.add(builder.like(root.get("lastName"), criteria.getLastName().toLowerCase() + "%"));
         }
 
-        if(criteria.getAge() != null) {
-            predicates.add(builder.like(root.get("age"), criteria.getAge()));
+        if (criteria.getAge() != null) {
+            predicates.add(builder.equal(root.get("age"), criteria.getAge()));
         }
         if (!predicates.isEmpty()) {
             query.where(predicates.toArray(new Predicate[0]));
@@ -46,8 +46,6 @@ public class AuthorDAO extends AbstractDAO<Author> {
         return createPageQuery(query, Page.of(criteria.getPageNumber(), criteria.getPageSize())).getPageResult();
 
     }
-
-
 
 
 }

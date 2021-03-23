@@ -22,6 +22,6 @@ public class Author extends TraceableEntity {
     private String lastName;
 
     @Column(name="AGE")
-    private String age;
+    private Integer age;
 
 }

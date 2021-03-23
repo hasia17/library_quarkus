@@ -20,7 +20,7 @@ public class Book extends TraceableEntity {
     private String isbn;
 
     @Column(name="PAGES")
-    private int pages;
+    private Integer pages;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="AUTHOR_GUID", nullable = false)

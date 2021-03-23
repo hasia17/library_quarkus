@@ -16,7 +16,7 @@ public class AuthorSearchCriteriaDTO {
     private String lastName;
 
     @QueryParam("age")
-    private String age;
+    private Integer age;
 
     @QueryParam("page")
     @DefaultValue("0")

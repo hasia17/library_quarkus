@@ -13,7 +13,7 @@ public class AuthorSearchCriteria {
 
     private String lastName;
 
-    private String age;
+    private Integer age;
 
     private Integer pageNumber;
 

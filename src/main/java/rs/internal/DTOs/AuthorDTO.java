@@ -11,6 +11,5 @@ public class AuthorDTO extends TraceableDTO {
 
     private String name;
     private String lastName;
-    private int age;
-
+    private Integer age;
 }

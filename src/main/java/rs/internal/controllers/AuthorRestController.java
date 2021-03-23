@@ -41,10 +41,10 @@ public class AuthorRestController {
 
     @POST
     @Transactional
-    public Response createAuthor(@Valid AuthorCreateUpdateDTO authorDTO)  {
+    public Response createAuthor(@Valid AuthorCreateUpdateDTO authorDTO) {
 
         Author author = mapper.map(authorDTO);
-        return Response.ok(mapper.map(authorDAO.create(author))).build();
+        return Response.ok(mapper.map(authorDAO.create(author))).status(201).build();
     }
 
     @PUT
@@ -74,8 +74,6 @@ public class AuthorRestController {
         PageResult<Author> authors = authorDAO.searchByCriteria(criteria);
         return Response.ok(mapper.map(authors)).build();
     }
-
-
 
 
 }
