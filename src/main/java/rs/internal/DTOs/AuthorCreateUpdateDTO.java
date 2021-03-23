@@ -21,14 +21,7 @@ public class AuthorCreateUpdateDTO {
     private String lastName;
 
     private Integer age;
-//
-//    private Integer version;
-//    private DateTime creationDate;
-//    @Nullable
-//    private String creationUser;
-//    private DateTime modificationDate;
-//    @Nullable
-//    private String modificationUser;
+
 
     public void setAge(Integer age) throws InvalidArgumentException{
         this.validateAge(age);
@@ -42,7 +35,6 @@ public class AuthorCreateUpdateDTO {
     }
 
     public class InvalidArgumentException extends Exception {
-
         private InvalidArgumentException(String message){
             super(message);
         }

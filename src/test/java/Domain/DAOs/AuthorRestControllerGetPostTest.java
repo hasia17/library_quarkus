@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import rs.internal.DTOs.AuthorCreateUpdateDTO;
 
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -14,7 +15,7 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest
-public class AuthorCreateUpdateDTOTest {
+public class AuthorRestControllerGetPostTest {
 
     @Test
     public void shouldCreateAuthorCreateUpdateDTO() throws AuthorCreateUpdateDTO.InvalidArgumentException {
@@ -36,7 +37,6 @@ public class AuthorCreateUpdateDTOTest {
         Integer statusCode = response.statusCode();
 
         assertEquals(Response.Status.CREATED.getStatusCode(), statusCode);
-
         JSONObject jo = new JSONObject(response.asString());
         String id = jo.getString("id");
 

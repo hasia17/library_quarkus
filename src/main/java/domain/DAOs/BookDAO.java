@@ -33,11 +33,11 @@ public class BookDAO extends AbstractDAO<Book>{
         }
 
         if(criteria.getIsbn() != null && !criteria.getIsbn().isEmpty()) {
-            predicates.add(builder.like(root.get("lastName"), criteria.getIsbn().toLowerCase() + "%"));
+            predicates.add(builder.like(root.get("isbn"), criteria.getIsbn().toLowerCase() + "%"));
         }
 
         if(criteria.getPages() != null) {
-            predicates.add(builder.equal(root.get("age"), criteria.getPages()));
+            predicates.add(builder.equal(root.get("pages"), criteria.getPages()));
         }
 
         if(criteria.getCategory() != null) {

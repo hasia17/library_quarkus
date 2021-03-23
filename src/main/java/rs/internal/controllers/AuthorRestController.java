@@ -19,6 +19,7 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Objects;
 
 @ApplicationScoped
 @Path("authors")
@@ -52,11 +53,14 @@ public class AuthorRestController {
     @Path("{id}")
     public Response updateAuthor(@PathParam("id") String id, @Valid AuthorCreateUpdateDTO authorDTO) {
         Author author = authorDAO.findById(id);
-        author.setLastName(authorDTO.getLastName());
-        author.setName(authorDTO.getName());
-        author.setAge(authorDTO.getAge());
-        authorDAO.update(author);
-        return Response.ok(mapper.map(author)).build();
+        if(Objects.nonNull(author)) {
+            author.setLastName(authorDTO.getLastName());
+            author.setName(authorDTO.getName());
+            author.setAge(authorDTO.getAge());
+            authorDAO.update(author);
+            return Response.ok(mapper.map(author)).build();
+        }
+        return Response.noContent().status(404).build();
     }
 
     @DELETE
@@ -64,8 +68,11 @@ public class AuthorRestController {
     @Path("{id}")
     public Response removeAuthor(@PathParam("id") String id) {
         Author author = authorDAO.findById(id);
-        authorDAO.delete(author);
-        return Response.ok(mapper.map(author)).build();
+        if(Objects.nonNull(author)) {
+            authorDAO.delete(author);
+            return Response.ok(mapper.map(author)).build();
+        }
+        return Response.noContent().status(404).build();
     }
 
     @GET
