@@ -41,7 +41,7 @@ public class BookDAO extends AbstractDAO<Book>{
         }
 
         if(criteria.getCategory() != null) {
-            predicates.add(builder.like(root.get("category"), criteria.getCategory() + "%"));
+            predicates.add(builder.equal(root.get("category"), criteria.getCategory()));
         }
 
         if(criteria.getAuthorID() != null && !criteria.getAuthorID().isEmpty()) {

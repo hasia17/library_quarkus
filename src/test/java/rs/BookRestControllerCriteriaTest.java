@@ -16,7 +16,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest
@@ -52,9 +51,9 @@ public class BookRestControllerCriteriaTest {
         PageResultDTO<BookCreateUpdateDTO> result1 = response.as(getBookCreateUpdateDtoTypeRef());
         BookCreateUpdateDTO result = result1.getStream().get(0);
         assertEquals(createdBook.getTitle(), result.getTitle());
-        assertEquals(createdBook.getIsbn(), result.getIsbn());
         assertEquals(createdBook.getPages(), result.getPages());
         assertEquals(createdBook.getCategory(), result.getCategory());
+        //assertEquals(createdBook.getIsbn(), result.getIsbn());
     }
 
     @Test
@@ -93,24 +92,23 @@ public class BookRestControllerCriteriaTest {
         assertEquals(createdBook.getCategory(), result.getCategory());
     }
 
-//    @Test
-//    @DisplayName("Find books by category")
-//    public void shouldFindBooksByCategory() throws BookCreateUpdateDTO.InvalidArgumentException, AuthorCreateUpdateDTO.InvalidArgumentException {
-//        BookCreateUpdateDTO createdBook = createBook("ISBN_category");
-//
-//        ExtractableResponse response = (ExtractableResponse) given()
-//                .when()
-//                .queryParam("category", "COMEDY")
-//                .get("/books");
-//
-//        PageResultDTO<BookCreateUpdateDTO> result1 = response.as(getBookCreateUpdateDtoTypeRef());
-//        BookCreateUpdateDTO result = result1.getStream().get(0);
-//        assertEquals(createdBook.getTitle(), result.getTitle());
-//        assertEquals(createdBook.getIsbn(), result.getIsbn());
-//        assertEquals(createdBook.getPages(), result.getPages());
-//        assertEquals(createdBook.getCategory(), result.getCategory());
-//        //assertEquals(createdBook.getAuthorID(), result.getAuthorID());
-//    }
+    @Test
+    @DisplayName("Find books by category")
+    public void shouldFindBooksByCategory() throws BookCreateUpdateDTO.InvalidArgumentException, AuthorCreateUpdateDTO.InvalidArgumentException {
+        BookCreateUpdateDTO createdBook = createBook("ISBN_category");
+
+        ExtractableResponse response = (ExtractableResponse) given()
+                .when()
+                .queryParam("category", "COMEDY")
+                .get("/books");
+
+        PageResultDTO<BookCreateUpdateDTO> result1 = response.as(getBookCreateUpdateDtoTypeRef());
+        BookCreateUpdateDTO result = result1.getStream().get(0);
+        assertEquals(createdBook.getTitle(), result.getTitle());
+        assertEquals(createdBook.getIsbn(), result.getIsbn());
+        assertEquals(createdBook.getPages(), result.getPages());
+        assertEquals(createdBook.getCategory(), result.getCategory());
+    }
 
 
     private TypeRef<PageResultDTO<BookCreateUpdateDTO>> getBookCreateUpdateDtoTypeRef() {

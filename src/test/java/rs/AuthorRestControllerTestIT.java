@@ -4,5 +4,5 @@ package rs;
 import io.quarkus.test.junit.NativeImageTest;
 
 @NativeImageTest
-public class AuthorRestControllerTestIT {
+public class AuthorRestControllerTestIT extends AuthorRestControllerGetPostTest{
 }
