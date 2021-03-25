@@ -1,6 +1,7 @@
 package rs.internal.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import domain.models.Author;
 import domain.models.Category;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BookCreateUpdateDTO {
+
+
 
     @NotNull
     private String title;
@@ -24,6 +27,9 @@ public class BookCreateUpdateDTO {
     private String authorID;
 
     private Category category;
+
+    private AuthorCreateUpdateDTO author;
+
 
     public void setPages(Integer pages) throws BookCreateUpdateDTO.InvalidArgumentException {
         this.validatePages(pages);

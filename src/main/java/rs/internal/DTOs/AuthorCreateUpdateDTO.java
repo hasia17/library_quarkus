@@ -12,8 +12,6 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AuthorCreateUpdateDTO {
 
-
-//    private String id;
     @NotNull
     private String name;
 

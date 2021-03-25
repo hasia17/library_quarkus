@@ -16,9 +16,9 @@ public class BookSearchCriteria {
 
     private Integer pages;
 
-    private Author author;
-
     private Category category;
+
+    private String authorID;
 
     private Integer pageNumber;
 
