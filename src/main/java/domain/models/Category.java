@@ -10,4 +10,6 @@ public enum Category {
     SCIENCE_FICTION,
     THRILLER,
     BIOGRAPHY
+
+
 }

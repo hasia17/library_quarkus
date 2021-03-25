@@ -1,7 +1,6 @@
 package rs.internal.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import domain.models.Book;
 import domain.models.Category;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +18,7 @@ public class BookCreateUpdateDTO {
     @NotNull
     private String isbn;
 
-    private int pages;
+    private Integer pages;
 
     @NotNull
     private String authorID;

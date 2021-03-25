@@ -1,4 +1,4 @@
-package Domain.DAOs;
+package rs;
 
 import domain.models.Category;
 import io.quarkus.test.junit.QuarkusTest;
@@ -23,7 +23,7 @@ public class BookRestControllerGetPostTest {
     public void shouldThrowExceptionOnWrongNumberOfPages() {
         BookCreateUpdateDTO bookCreateUpdateDTO = new BookCreateUpdateDTO();
         bookCreateUpdateDTO.setTitle("Title");
-        bookCreateUpdateDTO.setIsbn("ISBN");
+        bookCreateUpdateDTO.setIsbn("ISBN2");
         bookCreateUpdateDTO.setCategory(Category.HORROR);
         bookCreateUpdateDTO.setAuthorID("ISBN");
         Assertions.assertThrows(BookCreateUpdateDTO.InvalidArgumentException.class, () -> {
@@ -52,10 +52,11 @@ public class BookRestControllerGetPostTest {
 
         BookCreateUpdateDTO bookCreateUpdateDTO = new BookCreateUpdateDTO();
         bookCreateUpdateDTO.setTitle("Title");
-        bookCreateUpdateDTO.setIsbn("ISBN");
+        bookCreateUpdateDTO.setIsbn("ISBN3");
         bookCreateUpdateDTO.setPages(63);
         bookCreateUpdateDTO.setCategory(Category.HORROR);
         bookCreateUpdateDTO.setAuthorID(authorID);
+
 
 
         ExtractableResponse response = given()

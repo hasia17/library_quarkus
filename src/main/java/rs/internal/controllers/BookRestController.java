@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Objects;
 
 @ApplicationScoped
 @Path("books")
@@ -53,13 +54,16 @@ public class BookRestController {
     @Path("{id}")
     public Response updateBook(@PathParam("id") String id, @Valid BookCreateUpdateDTO bookDTO) {
         Book book = bookDAO.findById(id);
-        book.setTitle(bookDTO.getTitle());
-        book.setCategory(bookDTO.getCategory());
-        book.setIsbn(bookDTO.getIsbn());
-        book.setPages(bookDTO.getPages());
-        book.setAuthor(authorDAO.findById(bookDTO.getAuthorID()));
-        bookDAO.update(book);
-        return Response.ok(mapper.map(book)).build();
+        if(Objects.nonNull(book)) {
+            book.setTitle(bookDTO.getTitle());
+            book.setCategory(bookDTO.getCategory());
+            book.setIsbn(bookDTO.getIsbn());
+            book.setPages(bookDTO.getPages());
+            book.setAuthor(authorDAO.findById(bookDTO.getAuthorID()));
+            bookDAO.update(book);
+            return Response.ok(mapper.map(book)).build();
+        }
+        return Response.noContent().status(404).build();
     }
 
     @DELETE
@@ -67,8 +71,12 @@ public class BookRestController {
     @Path("{id}")
     public Response removeBook(@PathParam("id") String id) {
         Book book = bookDAO.findById(id);
-        bookDAO.delete(book);
-        return Response.ok(mapper.map(book)).build();
+        if(Objects.nonNull(book)) {
+            bookDAO.delete(book);
+            return Response.ok(mapper.map(book)).build();
+        }
+        return Response.noContent().status(404).build();
+
     }
 
     @GET

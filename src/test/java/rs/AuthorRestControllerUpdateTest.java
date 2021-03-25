@@ -1,4 +1,4 @@
-package Domain.DAOs;
+package rs;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.ExtractableResponse;

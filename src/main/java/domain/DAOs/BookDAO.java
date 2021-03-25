@@ -29,11 +29,11 @@ public class BookDAO extends AbstractDAO<Book>{
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
 
         if(criteria.getTitle() != null && !criteria.getTitle().isEmpty()) {
-            predicates.add(builder.like(root.get("title"), criteria.getTitle().toLowerCase() + "%"));
+            predicates.add(builder.like(root.get("title"), criteria.getTitle() + "%"));
         }
 
         if(criteria.getIsbn() != null && !criteria.getIsbn().isEmpty()) {
-            predicates.add(builder.like(root.get("isbn"), criteria.getIsbn().toLowerCase() + "%"));
+            predicates.add(builder.like(root.get("isbn"), criteria.getIsbn() + "%"));
         }
 
         if(criteria.getPages() != null) {
@@ -43,6 +43,10 @@ public class BookDAO extends AbstractDAO<Book>{
         if(criteria.getCategory() != null) {
             predicates.add(builder.like(root.get("category"), criteria.getCategory() + "%"));
         }
+
+//        if(criteria.getCategory() != null) {
+//            predicates.add(builder.like(root.get("author").get("name"), criteria.getCategory() + "%"));
+//        }
 
         if (!predicates.isEmpty()) {
             query.where(predicates.toArray(new Predicate[0]));
