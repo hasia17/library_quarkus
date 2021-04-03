@@ -1,0 +1,443 @@
+---
+openapi: 3.0.3
+info:
+  title: Library
+  description: Library example application
+  version: "1.0"
+servers:
+  - url: http://localhost:8080/
+paths:
+  /authors:
+    get:
+      description: Gets authors by criteria
+      operationId: getAuthorsByCriteria
+      parameters:
+        - name: age
+          in: query
+          schema:
+            format: int32
+            type: integer
+        - name: lastName
+          in: query
+          schema:
+            type: string
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            format: int32
+            default: 0
+            type: integer
+        - name: size
+          in: query
+          schema:
+            format: int32
+            default: 100
+            type: integer
+      responses:
+        "500":
+          description: "Internal Server Error, please check Problem Details"
+          content:
+            application/json: {}
+        "200":
+          description: The corresponding authors resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageResultDTO'
+    post:
+      description: Create author
+      operationId: createAuthor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorCreateUpdateDTO'
+      responses:
+        "201":
+          description: Created
+          headers:
+            Location:
+              description: URL for the create author resource
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorDTO'
+        "404":
+          description: Not found
+          content:
+            application/json: {}
+        "500":
+          description: Internal Server Error
+          content:
+            application/json: {}
+  /authors/{id}:
+    get:
+      description: Gets author by ID
+      operationId: getAuthorById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "404":
+          description: Not Found
+          content:
+            application/json: {}
+        "500":
+          description: Internal Server Error
+          content:
+            application/json: {}
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorDTO'
+    put:
+      description: Update the author
+      operationId: updateAuthor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorCreateUpdateDTO'
+      responses:
+        "400":
+          description: Bad request
+          content:
+            application/json: {}
+        "404":
+          description: Not Found
+          content:
+            application/json: {}
+        "500":
+          description: Internal Server Error
+          content:
+            application/json: {}
+        "200":
+          description: Updated author resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorDTO'
+    delete:
+      description: Delete the author
+      operationId: deleteAuthor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "404":
+          description: Not Found
+          content:
+            application/json: {}
+        "500":
+          description: Internal Server Error
+          content:
+            application/json: {}
+        "200":
+          description: Deleted author resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorDTO'
+  /books:
+    get:
+      description: Gets books by criteria
+      operationId: getBooksByCriteria
+      parameters:
+        - name: authorID
+          in: query
+          schema:
+            type: string
+        - name: category
+          in: query
+          schema:
+            $ref: '#/components/schemas/Category'
+        - name: isbn
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            format: int32
+            default: 0
+            type: integer
+        - name: pages
+          in: query
+          schema:
+            format: int32
+            type: integer
+        - name: size
+          in: query
+          schema:
+            format: int32
+            default: 100
+            type: integer
+        - name: title
+          in: query
+          schema:
+            type: string
+      responses:
+        "500":
+          description: "Internal Server Error, please check Problem Details"
+          content:
+            application/json: {}
+        "200":
+          description: The corresponding books resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageResultDTO'
+    post:
+      description: Create book
+      operationId: createBook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookCreateUpdateDTO'
+      responses:
+        "201":
+          description: Created
+          headers:
+            Location:
+              description: URL for the create author resource
+              style: simple
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookDTO'
+        "404":
+          description: Not found
+          content:
+            application/json: {}
+        "500":
+          description: Internal Server Error
+          content:
+            application/json: {}
+  /books/{id}:
+    get:
+      description: Gets book by ID
+      operationId: getBookById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "404":
+          description: Not Found
+          content:
+            application/json: {}
+        "500":
+          description: Internal Server Error
+          content:
+            application/json: {}
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookDTO'
+    put:
+      description: Update the book
+      operationId: updateBook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookCreateUpdateDTO'
+      responses:
+        "400":
+          description: Bad request
+          content:
+            application/json: {}
+        "404":
+          description: Not Found
+          content:
+            application/json: {}
+        "500":
+          description: Internal Server Error
+          content:
+            application/json: {}
+        "200":
+          description: Updated book resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookDTO'
+    delete:
+      description: Delete the book
+      operationId: deleteBook
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "404":
+          description: Not Found
+          content:
+            application/json: {}
+        "500":
+          description: Internal Server Error
+          content:
+            application/json: {}
+        "200":
+          description: Deleted book resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookDTO'
+components:
+  schemas:
+    AuthorCreateUpdateDTO:
+      required:
+        - lastName
+        - name
+      type: object
+      properties:
+        age:
+          format: int32
+          type: integer
+        lastName:
+          type: string
+          nullable: false
+        name:
+          type: string
+          nullable: false
+    OffsetDateTime:
+      format: date-time
+      type: string
+    AuthorDTO:
+      type: object
+      properties:
+        creationDate:
+          $ref: '#/components/schemas/OffsetDateTime'
+        creationUser:
+          type: string
+        modificationDate:
+          $ref: '#/components/schemas/OffsetDateTime'
+        modificationUser:
+          type: string
+        version:
+          format: int32
+          type: integer
+        id:
+          type: string
+        age:
+          format: int32
+          type: integer
+        lastName:
+          type: string
+        name:
+          type: string
+    ListObject:
+      type: array
+      items:
+        type: object
+    PageResultDTO:
+      type: object
+      properties:
+        number:
+          format: int32
+          type: integer
+        size:
+          format: int32
+          type: integer
+        stream:
+          $ref: '#/components/schemas/ListObject'
+        totalElements:
+          format: int64
+          type: integer
+        totalPages:
+          format: int64
+          type: integer
+    Category:
+      enum:
+        - BIOGRAPHY
+        - COMEDY
+        - FANTASY
+        - HISTORICAL_FICTION
+        - HORROR
+        - ROMANCE
+        - SCIENCE_FICTION
+        - THRILLER
+        - TRAGEDY
+      type: string
+    BookCreateUpdateDTO:
+      required:
+        - authorID
+        - isbn
+        - title
+      type: object
+      properties:
+        author:
+          $ref: '#/components/schemas/AuthorCreateUpdateDTO'
+        authorID:
+          type: string
+          nullable: false
+        category:
+          $ref: '#/components/schemas/Category'
+        isbn:
+          type: string
+          nullable: false
+        pages:
+          format: int32
+          type: integer
+        title:
+          type: string
+          nullable: false
+    BookDTO:
+      type: object
+      properties:
+        creationDate:
+          $ref: '#/components/schemas/OffsetDateTime'
+        creationUser:
+          type: string
+        modificationDate:
+          $ref: '#/components/schemas/OffsetDateTime'
+        modificationUser:
+          type: string
+        version:
+          format: int32
+          type: integer
+        id:
+          type: string
+        authorDTO:
+          $ref: '#/components/schemas/AuthorDTO'
+        category:
+          $ref: '#/components/schemas/Category'
+        isbn:
+          type: string
+        pages:
+          format: int32
+          type: integer
+        title:
+          type: string

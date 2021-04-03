@@ -140,6 +140,44 @@
     </dependencies>
   </dependencyManagement>
 
-
+<!--<build>-->
+<!--  <plugins>-->
+<!--    <plugin>-->
+<!--      <groupId>org.tkit.maven</groupId>-->
+<!--      <artifactId>tkit-mp-restclient-plugin</artifactId>-->
+<!--      <version>0.8.0</version>-->
+<!--      <executions>-->
+<!--        <execution>-->
+<!--          <id>email</id>-->
+<!--          <goals>-->
+<!--            <goal>codegen</goal>-->
+<!--          </goals>-->
+<!--          <configuration>-->
+<!--            <inputSpec>src/main/resources/clients/library-service.yaml</inputSpec>-->
+<!--            <output>${project.build.directory}/generated-sources/mprestclient</output>-->
+<!--            <apiPackage>gen.org.tkit.email</apiPackage>-->
+<!--            <modelPackage>gen.org.tkit.email.model</modelPackage>-->
+<!--            <generateSupportingFiles>false</generateSupportingFiles>-->
+<!--            <apiInterfaceDoc>false</apiInterfaceDoc>-->
+<!--            <fieldGen>LOMBOK</fieldGen>-->
+<!--            <jsonLib>JACKSON</jsonLib>-->
+<!--            <annotations>-->
+<!--              <annotation>javax.inject.Singleton</annotation>-->
+<!--              <annotation>org.tkit.quarkus.log.interceptor.LoggerService</annotation>-->
+<!--              <annotation>org.eclipse.microprofile.rest.client.inject.RegisterRestClient(configKey="library-service")</annotation>-->
+<!--            </annotations>-->
+<!--            <modelAnnotations>-->
+<!--              <modelAnnotation>lombok.ToString</modelAnnotation>-->
+<!--              <modelAnnotation>io.quarkus.runtime.annotations.RegisterForReflection</modelAnnotation>-->
+<!--            </modelAnnotations>-->
+<!--            <configOptions>-->
+<!--              <sourceFolder>email</sourceFolder>-->
+<!--            </configOptions>-->
+<!--          </configuration>-->
+<!--        </execution>-->
+<!--      </executions>-->
+<!--    </plugin>-->
+<!--  </plugins>-->
+<!--</build>-->
 
 </project>
