@@ -22,7 +22,7 @@ public class Book extends TraceableEntity {
     @Column(name="PAGES")
     private Integer pages;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="AUTHOR_GUID", nullable = false)
     private Author author;
 

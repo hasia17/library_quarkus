@@ -29,11 +29,11 @@ public class AuthorDAO extends AbstractDAO<Author> {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
 
         if (criteria.getName() != null && !criteria.getName().isEmpty()) {
-            predicates.add(builder.like(root.get("name"), criteria.getName() + "%"));
+            predicates.add(builder.like(root.get(Author_.NAME), criteria.getName()));
         }
 
         if (criteria.getLastName() != null && !criteria.getLastName().isEmpty()) {
-            predicates.add(builder.like(root.get(Author_.LAST_NAME), criteria.getLastName() + "%"));
+            predicates.add(builder.like(root.get(Author_.LAST_NAME), criteria.getLastName()));
         }
 
         if (criteria.getAge() != null) {

@@ -9,7 +9,7 @@ import org.tkit.quarkus.rs.models.PageResultDTO;
 import rs.internal.DTOs.*;
 
 
-@Mapper(componentModel = "cdi", uses = OffsetDateTimeMapper.class)
+@Mapper(componentModel = "cdi", uses = {OffsetDateTimeMapper.class, AuthorMapper.class})
 public interface BookMapper {
 
     BookDTO map(Book model);
