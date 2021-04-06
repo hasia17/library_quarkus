@@ -20,6 +20,8 @@ public class BookSearchCriteria {
 
     private String authorID;
 
+    private String authorLastName;
+
     private Integer pageNumber;
 
     private Integer pageSize;

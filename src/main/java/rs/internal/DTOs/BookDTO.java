@@ -17,7 +17,4 @@ public class BookDTO extends TraceableDTO {
     private Integer pages;
     private Category category;
     private AuthorDTO author;
-
-
-
 }

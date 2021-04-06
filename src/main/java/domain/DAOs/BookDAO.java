@@ -49,6 +49,10 @@ public class BookDAO extends AbstractDAO<Book>{
             predicates.add(builder.equal(root.get(Book_.AUTHOR).get(Author_.ID), criteria.getAuthorID()));
         }
 
+        if (Objects.nonNull(criteria.getAuthorLastName())) {
+            predicates.add(builder.like(root.get(Book_.AUTHOR).get(Author_.LAST_NAME), criteria.getAuthorLastName()));
+        }
+
         if (!predicates.isEmpty()) {
             query.where(predicates.toArray(new Predicate[0]));
         }

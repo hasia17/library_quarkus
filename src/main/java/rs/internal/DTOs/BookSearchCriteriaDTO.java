@@ -28,6 +28,9 @@ public class BookSearchCriteriaDTO {
     @QueryParam("authorID")
     private String authorID;
 
+    @QueryParam("authorLastName")
+    private String authorLastName;
+
     @QueryParam("page")
     @DefaultValue("0")
     private int pageNumber = 0;
